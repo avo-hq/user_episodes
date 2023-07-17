@@ -1,0 +1,31 @@
+<div class="flex flex-col">
+  <%= render Avo::PanelComponent.new(name: "#{@user.name}'s podcasts", display_breadcrumbs: true) do |c| %>
+
+    <% c.with_bare_content do %>
+      <div class="space-y-12">
+        <% @user.podcasts.each do |podcast| %>
+          <div>
+            <div class="relative p-4 <%= white_panel_classes %>">
+              <h6><%= podcast.name %></h6>
+            </div>
+            <turbo-frame id="has_many_field_show_episodes" src="/avo/resources/podcasts/<%= podcast.id %>/episodes?turbo_frame=has_many_field_show_episodes" target="_top" class="block mt-2"></turbo-frame>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <%# c.with_body do %>
+      <div class="flex flex-col justify-between py-6 min-h-24">
+        <div class="px-6 space-y-4">
+          <h3>Simple listing below 👋</h3>
+
+          <div>
+            <ul>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    <%# end %>
+  <% end %>
+</div>

@@ -1,0 +1,24 @@
+<div class="flex flex-col">
+  <%= render Avo::PanelComponent.new(name: 'Users with podcasts', display_breadcrumbs: true) do |c| %>
+    <% c.with_tools do %>
+      <div class="text-sm italic">This is the panels tools section.</div>
+    <% end %>
+
+    <% c.with_body do %>
+      <div class="flex flex-col justify-between py-6 min-h-24">
+        <div class="px-6 space-y-4">
+          <h3>Simple listing below 👋</h3>
+
+          <div>
+            <ul>
+              <% @users.each do |user| %>
+                <%= link_to user.name, "/avo/user_episodes/#{user.id}" %>
+              <% end %>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
